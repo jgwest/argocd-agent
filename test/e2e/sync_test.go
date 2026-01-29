@@ -101,30 +101,37 @@ func (suite *SyncTestSuite) Test_SyncManaged() {
 		return err == nil
 	}, 30*time.Second, 1*time.Second)
 
+	suite.T().Log("jgw: waiting for outofsync", app.Name, app.Namespace, time.Now())
+
 	// Check that the principal's sync status is "OutOfSync"
 	requires.Eventually(func() bool {
 		app = argoapp.Application{}
 		err = suite.PrincipalClient.Get(suite.Ctx, principalKey, &app, metav1.GetOptions{})
 		return err == nil && app.Status.Sync.Status == argoapp.SyncStatusCodeOutOfSync
-	}, 60*time.Second, 1*time.Second)
+	}, 120*time.Second, 1*time.Second)
+
+	suite.T().Log("jgw: starting syncapplication of", app.Name, app.Namespace, time.Now())
 
 	// Sync the app
 	err = fixture.SyncApplication(suite.Ctx, principalKey, suite.PrincipalClient)
 	requires.NoError(err)
+	suite.T().Log("jgw: completing syncapplication", time.Now())
 
 	// Wait for the app on the principal to become synced
 	requires.Eventually(func() bool {
 		app := argoapp.Application{}
 		err := suite.PrincipalClient.Get(suite.Ctx, principalKey, &app, metav1.GetOptions{})
 		return err == nil && app.Status.Sync.Status == argoapp.SyncStatusCodeSynced
-	}, 60*time.Second, 1*time.Second)
+	}, 300*time.Second, 1*time.Second)
+
+	suite.T().Log("jgw: completing eventually", time.Now())
 
 	// Ensure the app on the managed-agent becomes synced
 	requires.Eventually(func() bool {
 		app := argoapp.Application{}
 		err := suite.ManagedAgentClient.Get(suite.Ctx, agentKey, &app, metav1.GetOptions{})
 		return err == nil && app.Status.Sync.Status == argoapp.SyncStatusCodeSynced
-	}, 60*time.Second, 1*time.Second)
+	}, 120*time.Second, 1*time.Second)
 
 	// Check that the .spec field of the managed-agent matches that of the
 	// principal

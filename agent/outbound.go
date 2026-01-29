@@ -118,6 +118,11 @@ func (a *Agent) addAppUpdateToQueue(old *v1alpha1.Application, new *v1alpha1.App
 	}
 
 	ev := a.emitter.ApplicationEvent(eventType, new)
+
+	logCtx = logCtx.WithField("resource_id", event.ResourceID(ev)).WithField("event_id", event.EventID(ev))
+
+	logCtx.Info("JGW: add application ", new.ObjectMeta.Name, new.ObjectMeta.Namespace, ", update, status is:", new.Status.Health, new.Status.Sync)
+
 	tracing.InjectTraceContext(ctx, ev)
 	q.Add(ev)
 	logCtx.
