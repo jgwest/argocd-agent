@@ -1,0 +1,79 @@
+INHERIT: mkdocs.yml
+docs_dir: docs-v2
+site_dir: site-v2
+
+nav:
+  - Overview: index.md
+  - Features:
+      - Overview: features/index.md
+  - Concepts:
+      - Overview: concepts/index.md
+      - Components & terminology: concepts/components-terminology.md
+      - General architecture: concepts/architecture.md
+      - Integration with Argo CD: concepts/argocd-integration.md
+      - Agent mode overview: concepts/agent-modes/index.md
+      - Agent mapping: concepts/agent-mapping.md
+      - High availability: concepts/ha.md
+  - Getting started:
+      - Overview: getting-started/index.md
+      - Kubernetes: getting-started/kubernetes/index.md
+      - Kind: getting-started/kubernetes/kind/index.md
+      - Istio: getting-started/kubernetes/istio/index.md
+      - OpenShift: getting-started/openshift/index.md
+      - OCM-io: getting-started/ocm-io/index.md
+  - User guide:
+      - Managed Agents:
+        - Introduction: user-guide/managed-agent/index.md
+        - Web-based terminal: user-guide/managed-agent/web-terminal.md
+        - GPG Key Synchronization: user-guide/managed-agent/gpg-keys.md
+      - Autonomous Agents:
+        - Introduction: user-guide/autonomous-agent/index.md      
+      - Features:
+        - Managing Applications: user-guide/applications.md
+        - Managing AppProjects: user-guide/appprojects.md
+        - ApplicationSets: user-guide/applicationsets.md
+        - Repository credentials: user-guide/repo-creds.md
+        - Repository URLs: user-guide/repository.md
+        - Adding an agent: user-guide/adding-agents.md
+        - Accessing live resources on workload clusters: user-guide/live-resources.md
+        - Migration from classical multi-cluster Argo CD: user-guide/migration.md
+  - Technical reference:
+      - Overview: technical/general.md
+      - Applications: technical/applications.md
+      - AppProjects: technical/appprojects.md
+      - Web terminal workflow: technical/web-terminal-workflow.md
+      - Sync protocol: concepts/sync-protocol.md
+      - Workflow: architecture/workflow.md
+  - Configuration:
+      - Overview: configuration/index.md
+      - Authentication: configuration/authentication.md
+      - TLS & Certificates: configuration/tls-certificates.md
+      - Namespaces: configuration/namespaces.md
+      - Networking: configuration/networking.md
+      - Service Mesh: configuration/service-mesh.md
+      - Observability: configuration/observability.md
+      - High availability: configuration/ha.md
+      - CTL: configuration/ctl.md
+      - Reference:
+          - Overview: configuration/reference/index.md
+          - Principal: configuration/reference/principal.md
+          - Agent: configuration/reference/agent.md
+  - Operations:
+      - Metrics: operations/metrics.md
+      - Tracing: operations/tracing.md
+      - Profiling: operations/profiling.md
+      - High availability: operations/ha-failover.md
+      - Verifying artifacts: operations/provenance.md
+  - Proposals:
+      - HA failover proposal: proposals/ha-failover.md
+      - Sync protocol proposal: proposals/Argo-CD-Agent-Sync-Proposal.md
+  - Contributing:
+      - Overview: contributing/index.md
+      - Contributing (upstream guide): CONTRIBUTING.md
+      - Local development: contributing/local.md
+      - Coding guidelines: contributing/code.md
+      - Documentation guidelines: contributing/docs.md
+      - Submitting PRs: contributing/prs.md
+      - Code reviewing guide: contributing/review.md
+      - Logging guidelines: contributing/logging.md
+  - FAQ: faq/index.md

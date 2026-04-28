@@ -25,6 +25,9 @@ endif
 # mkdocs related configuration
 MKDOCS_DOCKER_IMAGE?=squidfunk/mkdocs-material:9
 MKDOCS_RUN_ARGS?=
+MKDOCS_V2_CONFIG?=mkdocs-v2.yml
+# Host port mapped to MkDocs inside the container (8001 avoids clashing with serve-docs on 8000)
+MKDOCS_V2_PUBLISH_PORT?=8001
 
 # Binary names
 BIN_NAME_AGENT?=
@@ -220,6 +223,14 @@ serve-docs:
 .PHONY: build-docs
 build-docs:
 	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -v ${current_dir}:/docs ${MKDOCS_DOCKER_IMAGE} build
+
+.PHONY: serve-docs-v2
+serve-docs-v2:
+	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -it -p $(MKDOCS_V2_PUBLISH_PORT):8000 -v ${current_dir}:/docs:Z ${MKDOCS_DOCKER_IMAGE} serve -a 0.0.0.0:8000 -f ${MKDOCS_V2_CONFIG}
+
+.PHONY: build-docs-v2
+build-docs-v2:
+	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -v ${current_dir}:/docs:Z ${MKDOCS_DOCKER_IMAGE} build -f ${MKDOCS_V2_CONFIG}
 
 .PHONY: validate-values-schema
 validate-values-schema:
