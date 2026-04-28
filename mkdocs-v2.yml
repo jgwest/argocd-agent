@@ -11,7 +11,7 @@ nav:
       - Components & terminology: concepts/components-terminology.md
       - General architecture: concepts/architecture.md
       - Integration with Argo CD: concepts/argocd-integration.md
-      - Agent mode overview: concepts/agent-modes/index.md
+      - Agent mode overview: concepts/agent-modes.md
       - Agent mapping: concepts/agent-mapping.md
       - High availability: concepts/ha.md
   - Getting started:

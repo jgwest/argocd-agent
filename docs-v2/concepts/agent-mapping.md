@@ -298,6 +298,6 @@ If applications appear in the agent's namespace (e.g., `argocd`) when they shoul
 
 ## Related Documentation
 
-- [Agent Modes (Managed vs Autonomous)](./agent-modes/index.md)
+- [Agent Modes (Managed vs Autonomous)](./agent-modes.md)
 - [Namespaces Configuration](../configuration/namespaces.md)
 - [Architecture Overview](./architecture.md)

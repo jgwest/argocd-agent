@@ -14,7 +14,7 @@ In the diagrams throughout this document:
 * **Light blue boxes** represent Argo CD components  
 * **Light red boxes** represent external systems and components
 
-Components with dotted outlines indicate their deployment location depends on the selected [operational mode](./agent-modes/index.md) of the agent.
+Components with dotted outlines indicate their deployment location depends on the selected [operational mode](./agent-modes.md) of the agent.
 
 !!! warning "Integration Pattern Selection"
     The choice between integration patterns is a fundamental architectural decision that affects your entire GitOps infrastructure. While agents can operate in different modes within the same environment, all workload clusters must use the same integration pattern. Switching between patterns requires service interruption and careful migration planning.

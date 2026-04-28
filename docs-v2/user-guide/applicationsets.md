@@ -87,4 +87,4 @@ The [Kind getting-started guide](../getting-started/kubernetes/kind/index.md) in
 
 - [Agent Mapping Modes](../concepts/agent-mapping.md) -- destination-based vs. namespace-based routing
 - [Managing Applications](applications.md) -- how Applications are synced between principal and agents
-- [Agent Modes](../concepts/agent-modes/index.md) -- managed vs. autonomous mode
+- [Agent Modes](../concepts/agent-modes.md) -- managed vs. autonomous mode

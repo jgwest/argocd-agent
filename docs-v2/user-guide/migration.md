@@ -560,5 +560,5 @@ For migration support:
 ## Additional Resources
 
 - [Architecture Overview](../concepts/architecture.md) - Understanding the technical foundations
-- [Agent Modes](../concepts/agent-modes/index.md) - Detailed mode comparisons  
+- [Agent Modes](../concepts/agent-modes.md) - Detailed mode comparisons  
 - [Configuration Guide](../configuration/index.md) - Advanced configuration options

@@ -427,7 +427,7 @@ Use a ClusterRoleBinding or namespace-scoped RoleBindings depending on your secu
 ## Related Documentation
 
 - [Concepts: Agent Mapping Modes](../concepts/agent-mapping.md) - Namespace-based vs destination-based mapping
-- [Concepts: Agent Modes](../concepts/agent-modes/index.md) - Understanding managed vs autonomous mode
+- [Concepts: Agent Modes](../concepts/agent-modes.md) - Understanding managed vs autonomous mode
 - [Reference: Principal](reference/principal.md) - Complete parameter reference
 - [Getting Started: Kubernetes](../getting-started/kubernetes/index.md) - Initial setup including apps-in-any-namespace
 - [Argo CD: Apps in Any Namespace](https://argo-cd.readthedocs.io/en/stable/operator-manual/app-any-namespace/) - Argo CD documentation
