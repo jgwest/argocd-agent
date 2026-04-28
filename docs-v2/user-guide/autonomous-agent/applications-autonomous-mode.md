@@ -53,7 +53,7 @@ Applications from autonomous agents may have their project references transforme
 - If the Application uses a non-default project, it may be prefixed with the agent name
 - Example: `my-project` becomes `production-agent-my-project` on the principal
 
-For more information, refer to [Managing AppProjects](../appprojects.md#autonomous-agent-mode)
+For more information, refer to [Managing AppProjects](appprojects-autonomous-mode.md).
 
 ### Status Synchronization
 
