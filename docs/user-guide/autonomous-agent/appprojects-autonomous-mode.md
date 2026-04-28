@@ -93,14 +93,6 @@ When an AppProject is received from an autonomous agent, the principal applies t
 
 4. **Namespace Mapping**: The project is placed in the Argo CD namespace on the principal (same as where other AppProjects reside)
 
-### Transformation summary (autonomous)
-
-- **Direction**: AppProject flows from agent to principal  
-- **Selection**: All AppProjects created on autonomous agents are synchronized
-- **Destinations**: All destinations are transformed to point to the agent cluster (name = agent name, server = "*")
-- **Source Namespaces**: Replaced with the agent's namespace on the principal
-- **Name**: Prefixed with agent name to avoid conflicts
-
 ### Lifecycle Management
 
 - **Creation**: Creating an AppProject on the agent automatically creates it on the principal (with prefixed name)
@@ -134,9 +126,3 @@ When an AppProject is received from an autonomous agent, the principal applies t
 ## Security Considerations
 
 - **Autonomous mode**: Agents can create AppProjects locally—enforce RBAC on each workload cluster.
-
-## Monitoring and observability
-
-- **Principal logs**: Observe AppProject events arriving from agents
-- **Agent logs**: Local AppProject lifecycle and sync errors
-- **Metrics / health checks**: Track upstream sync success

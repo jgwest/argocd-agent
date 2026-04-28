@@ -74,14 +74,6 @@ When an AppProject is sent to an agent, it undergoes transformation to make it a
 - **Deletion**: Deleting an AppProject on the principal removes it from all agents
 - **Agent Connection**: When an agent connects, it receives all AppProjects that should be synchronized to it
 
-## Transformation summary (managed)
-
-- **Direction**: AppProject flows from principal to agent
-- **Selection**: Uses glob pattern matching on `sourceNamespaces` and `destinations` to determine which agents receive the project
-- **Destinations**: Filtered to only include destinations matching the agent, then transformed to `in-cluster`
-- **Source Namespaces**: Removed completely since they're only used on the control plane for routing
-- **Name**: Remains unchanged
-
 
 ## Best Practices
 
@@ -118,10 +110,3 @@ When an AppProject is sent to an agent, it undergoes transformation to make it a
 ## Security Considerations
 
 - **Managed Mode**: Only the principal can create AppProjects, maintaining central control
-
-## Monitoring and Observability
-
-- **Principal Logs**: Monitor AppProject distribution events
-- **Agent Logs**: Watch for AppProject creation/update/deletion events
-- **Metrics**: Use available metrics to track AppProject synchronization success/failure rates
-- **Health Checks**: Implement monitoring to detect synchronization issues
