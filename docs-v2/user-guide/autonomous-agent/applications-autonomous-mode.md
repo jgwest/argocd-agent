@@ -2,7 +2,7 @@
 
 This guide covers how Argo CD `Applications` are synchronized between **autonomous** agents and the principal.
 
-For **managed** agents, see [Application synchronization (managed agents)](applications-managed-mode.md). For documentation covering both modes together, see [Application synchronization](applications.md).
+For **managed** agents, see [Application synchronization (managed agents)](../applications-managed-mode.md). For documentation covering both modes together, see [Application synchronization](../applications.md).
 
 ## Overview
 
@@ -53,7 +53,7 @@ Applications from autonomous agents may have their project references transforme
 - If the Application uses a non-default project, it may be prefixed with the agent name
 - Example: `my-project` becomes `production-agent-my-project` on the principal
 
-For more information, refer to [Managing AppProjects](./appprojects.md#autonomous-agent-mode)
+For more information, refer to [Managing AppProjects](../appprojects.md#autonomous-agent-mode)
 
 ### Status Synchronization
 
