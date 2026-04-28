@@ -60,6 +60,7 @@ nav:
       - Adding an agent: user-guide/adding-agents.md
       - Accessing live resources on workload clusters: user-guide/live-resources.md
       - Migration from classical multi-cluster Argo CD: user-guide/migration.md
+      - Ignore sync label: user-guide/ignore-sync.md
   - Configuration:
       - Overview: configuration/index.md
       - Authentication: configuration/authentication.md
