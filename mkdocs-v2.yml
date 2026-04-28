@@ -12,7 +12,6 @@ nav:
       - General architecture: concepts/architecture.md
       - Integration with Argo CD: concepts/argocd-integration.md
       - Agent mode overview: concepts/agent-modes.md
-      - Agent mapping: concepts/agent-mapping.md
       - High availability: concepts/ha.md
   - Getting started:
       - Overview: getting-started/index.md
@@ -24,6 +23,7 @@ nav:
   - User guide:
       - Managed Agents:
         - Introduction: user-guide/managed-agent/index.md
+        - Agent mapping: user-guide/managed-agent/agent-mapping.md
         - Applications: user-guide/managed-agent/applications-managed-mode.md
         - AppProjects: user-guide/managed-agent/appprojects-managed-mode.md
         - ApplicationSets: user-guide/managed-agent/applicationsets-managed-mode.md

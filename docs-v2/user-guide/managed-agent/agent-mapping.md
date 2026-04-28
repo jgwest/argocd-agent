@@ -30,7 +30,7 @@ In namespace-based mapping, the **namespace of the Application resource** determ
 
 3. **Agent Processing**: The agent receives the Application and creates it in its configured namespace (typically `argocd`).
 
-For detailed namespace configuration (access control, auto-creation, best practices), see [Namespaces Configuration](../configuration/namespaces.md).
+For detailed namespace configuration (access control, auto-creation, best practices), see [Namespaces Configuration](../../configuration/namespaces.md).
 
 ### Example
 
@@ -298,6 +298,6 @@ If applications appear in the agent's namespace (e.g., `argocd`) when they shoul
 
 ## Related Documentation
 
-- [Agent Modes (Managed vs Autonomous)](./agent-modes.md)
-- [Namespaces Configuration](../configuration/namespaces.md)
-- [Architecture Overview](./architecture.md)
+- [Agent Modes (Managed vs Autonomous)](../../concepts/agent-modes.md)
+- [Namespaces Configuration](../../configuration/namespaces.md)
+- [Architecture Overview](../../concepts/architecture.md)

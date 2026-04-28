@@ -7,7 +7,7 @@ This document explains how the principal handles namespaces, how to configure na
 By default, argocd-agent uses a "namespace per agent" model on the control plane cluster (**namespace-based mapping**). Each agent that connects to the principal has a corresponding namespace where its Applications are stored.
 
 !!! tip "Alternative: Destination-Based Mapping"
-    argocd-agent also supports **destination-based mapping**, where applications use `spec.destination.name` on the principal to specify the target agent. See [Agent Mapping Modes](../concepts/agent-mapping.md) for a comparison.
+    argocd-agent also supports **destination-based mapping**, where applications use `spec.destination.name` on the principal to specify the target agent. See [Agent Mapping Modes](../user-guide/managed-agent/agent-mapping.md) for a comparison.
 
 **Key concepts:**
 
@@ -426,7 +426,7 @@ Use a ClusterRoleBinding or namespace-scoped RoleBindings depending on your secu
 
 ## Related Documentation
 
-- [Concepts: Agent Mapping Modes](../concepts/agent-mapping.md) - Namespace-based vs destination-based mapping
+- [Concepts: Agent Mapping Modes](../user-guide/managed-agent/agent-mapping.md) - Namespace-based vs destination-based mapping
 - [Concepts: Agent Modes](../concepts/agent-modes.md) - Understanding managed vs autonomous mode
 - [Reference: Principal](reference/principal.md) - Complete parameter reference
 - [Getting Started: Kubernetes](../getting-started/kubernetes/index.md) - Initial setup including apps-in-any-namespace

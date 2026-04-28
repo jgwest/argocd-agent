@@ -20,7 +20,7 @@ The [Kind getting-started guide](../../getting-started/kubernetes/kind/index.md)
 
 ## Related Documentation
 
-- [Agent Mapping Modes](../../concepts/agent-mapping.md) -- destination-based vs. namespace-based routing
+- [Agent Mapping Modes](../managed-agent/agent-mapping.md) -- destination-based vs. namespace-based routing
 - [Application synchronization (managed agents)](../managed-agent/applications-managed-mode.md) -- Applications with managed-mode agents
 - [Application synchronization (autonomous agents)](applications-autonomous-mode.md) -- Applications with autonomous agents
 - [Agent Modes](../../concepts/agent-modes.md) -- managed vs. autonomous mode

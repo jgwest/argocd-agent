@@ -30,7 +30,7 @@ In managed mode, run the `argocd-applicationset-controller` on the control plane
 
 ### Destination-based routing
 
-With [destination-based mapping](../../concepts/agent-mapping.md#destination-based-mapping) enabled, the principal routes each generated Application to an agent based on the Application's `spec.destination.name` field. This is the recommended approach for ApplicationSets because it allows a single ApplicationSet to target multiple agents.
+With [destination-based mapping](./agent-mapping.md#destination-based-mapping) enabled, the principal routes each generated Application to an agent based on the Application's `spec.destination.name` field. This is the recommended approach for ApplicationSets because it allows a single ApplicationSet to target multiple agents.
 
 For example, a cluster generator can produce one Application per registered agent, each with a different `destination.name`. The principal routes each Application to the matching agent automatically.
 
@@ -67,8 +67,8 @@ With namespace-based mapping (the default), ApplicationSets can still be used bu
 ### Configuration
 
 1. Deploy the `argocd-applicationset-controller` on the control plane cluster.
-2. Enable [destination-based mapping](../../concepts/agent-mapping.md#destination-based-mapping) on both the principal and agents for multi-agent ApplicationSets.
-3. Ensure AppProjects have the appropriate `sourceNamespaces` configured (see [AppProject Configuration](../../concepts/agent-mapping.md#appproject-configuration)).
+2. Enable [destination-based mapping](./agent-mapping.md#destination-based-mapping) on both the principal and agents for multi-agent ApplicationSets.
+3. Ensure AppProjects have the appropriate `sourceNamespaces` configured (see [AppProject Configuration](./agent-mapping.md#appproject-configuration)).
 
 ## Limitations
 
@@ -76,7 +76,7 @@ With namespace-based mapping (the default), ApplicationSets can still be used bu
 
 ## Related Documentation
 
-- [Agent Mapping Modes](../../concepts/agent-mapping.md) -- destination-based vs. namespace-based routing
+- [Agent Mapping Modes](./agent-mapping.md) -- destination-based vs. namespace-based routing
 - [Application synchronization (managed agents)](applications-managed-mode.md) -- Applications with managed-mode agents
 - [Application synchronization (autonomous agents)](../autonomous-agent/applications-autonomous-mode.md) -- Applications with autonomous agents
 - [Agent Modes](../../concepts/agent-modes.md) -- managed vs. autonomous mode
