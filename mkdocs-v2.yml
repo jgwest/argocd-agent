@@ -30,6 +30,8 @@ nav:
         - Introduction: user-guide/autonomous-agent/index.md      
       - Features:
         - Managing Applications: user-guide/applications.md
+        - Applications (managed agents): user-guide/applications-managed-mode.md
+        - Applications (autonomous agents): user-guide/applications-autonomous-mode.md
         - Managing AppProjects: user-guide/appprojects.md
         - ApplicationSets: user-guide/applicationsets.md
         - Repository credentials: user-guide/repo-creds.md
@@ -37,13 +39,6 @@ nav:
         - Adding an agent: user-guide/adding-agents.md
         - Accessing live resources on workload clusters: user-guide/live-resources.md
         - Migration from classical multi-cluster Argo CD: user-guide/migration.md
-  - Technical reference:
-      - Overview: technical/general.md
-      - Applications: technical/applications.md
-      - AppProjects: technical/appprojects.md
-      - Web terminal workflow: technical/web-terminal-workflow.md
-      - Sync protocol: concepts/sync-protocol.md
-      - Workflow: architecture/workflow.md
   - Configuration:
       - Overview: configuration/index.md
       - Authentication: configuration/authentication.md
@@ -64,9 +59,16 @@ nav:
       - Profiling: operations/profiling.md
       - High availability: operations/ha-failover.md
       - Verifying artifacts: operations/provenance.md
-  - Proposals:
-      - HA failover proposal: proposals/ha-failover.md
-      - Sync protocol proposal: proposals/Argo-CD-Agent-Sync-Proposal.md
+  - Technical reference:
+      - Overview: technical/general.md
+      - Applications: technical/applications.md
+      - AppProjects: technical/appprojects.md
+      - Web terminal workflow: technical/web-terminal-workflow.md
+      - Sync protocol: concepts/sync-protocol.md
+      - Workflow: architecture/workflow.md
+      - Proposals:
+        - HA failover proposal: proposals/ha-failover.md
+        - Sync protocol proposal: proposals/Argo-CD-Agent-Sync-Proposal.md
   - Contributing:
       - Overview: contributing/index.md
       - Contributing (upstream guide): CONTRIBUTING.md

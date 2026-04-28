@@ -1,6 +1,7 @@
 # Investigating challenging cases Argo CD Agent must handle
 
 Written by Jonathan West (@jgwest), originally proposed in September 2024. 
+
 * Lightly edited for GitHub in March 2026.
 
 # Introduction
