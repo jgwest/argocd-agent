@@ -31,7 +31,6 @@ nav:
         - Introduction: user-guide/autonomous-agent/index.md
         - Applications (autonomous agents): user-guide/autonomous-agent/applications-autonomous-mode.md
       - Features:
-        - Managing Applications: user-guide/applications.md
         - Managing AppProjects: user-guide/appprojects.md
         - ApplicationSets: user-guide/applicationsets.md
         - Repository credentials: user-guide/repo-creds.md

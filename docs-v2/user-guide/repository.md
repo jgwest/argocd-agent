@@ -268,5 +268,6 @@ For more information about Argo CD Agent configuration and other features, see:
 
 - [Agent Configuration Reference](../configuration/reference/agent.md)
 - [Principal Configuration Reference](../configuration/reference/principal.md)
-- [Application Management](applications.md)
+- [Application synchronization (managed agents)](managed-agent/applications-managed-mode.md)
+- [Application synchronization (autonomous agents)](autonomous-agent/applications-autonomous-mode.md)
 - [AppProject Synchronization](appprojects.md)

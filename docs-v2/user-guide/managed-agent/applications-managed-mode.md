@@ -2,7 +2,7 @@
 
 This guide covers how Argo CD `Applications` are synchronized between the principal (control plane) and **managed** agents on workload clusters.
 
-For **autonomous** agents, see [Application synchronization (autonomous agents)](../autonomous-agent/applications-autonomous-mode.md). For documentation covering both modes together, see [Application synchronization](../applications.md).
+For **autonomous** agents, see [Application synchronization (autonomous agents)](../autonomous-agent/applications-autonomous-mode.md). For how managed and autonomous modes differ at a conceptual level, see [Agent modes](../../concepts/agent-modes.md).
 
 ## Overview
 
