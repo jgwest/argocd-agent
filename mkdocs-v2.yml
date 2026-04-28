@@ -33,7 +33,6 @@ nav:
         - Applications (autonomous agents): user-guide/autonomous-agent/applications-autonomous-mode.md
         - AppProjects (autonomous agents): user-guide/autonomous-agent/appprojects-autonomous-mode.md
       - Features:
-        - Managing AppProjects: user-guide/appprojects.md
         - ApplicationSets: user-guide/applicationsets.md
         - Repository credentials: user-guide/repo-creds.md
         - Repository URLs: user-guide/repository.md

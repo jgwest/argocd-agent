@@ -366,5 +366,6 @@ After successfully adding agents:
 For more information, refer to:
 - [Application synchronization (managed agents)](./managed-agent/applications-managed-mode.md)
 - [Application synchronization (autonomous agents)](./autonomous-agent/applications-autonomous-mode.md)
-- [AppProject Synchronization](./appprojects.md)
+- [AppProject synchronization (managed agents)](./managed-agent/appprojects-managed-mode.md)
+- [AppProject synchronization (autonomous agents)](./autonomous-agent/appprojects-autonomous-mode.md)
 - [Live Resources](./live-resources.md) 

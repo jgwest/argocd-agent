@@ -40,7 +40,7 @@ stringData:
 
 Any repository URL starting with `https://github.com/myorg` will automatically use these credentials on agents matching the AppProject's patterns.
 
-The distribution logic (AppProject matching, agent pattern matching) is identical to repository secrets. See the [Repository Management](repository.md) and [AppProjects](appprojects.md) guides for details.
+The distribution logic (AppProject matching, agent pattern matching) is identical to repository secrets. See the [Repository Management](repository.md) guide and the AppProject docs for [managed agents](managed-agent/appprojects-managed-mode.md) and [autonomous agents](autonomous-agent/appprojects-autonomous-mode.md).
 
 ## Lifecycle
 

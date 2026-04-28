@@ -32,7 +32,7 @@ The principal distributes a repository secret to a managed agent using a **two-s
    - At least one destination pattern via `.spec.destinations` (either `name` or a `server` URL that includes `?agentName=<pattern>`; `*` is allowed)  
    - At least one pattern in the AppProject's `.spec.sourceNamespaces` fields
 
-Learn more about AppProject matching logic in the [AppProject synchronization overview](./appprojects.md) and the guides for [managed agents](managed-agent/appprojects-managed-mode.md) and [autonomous agents](autonomous-agent/appprojects-autonomous-mode.md).
+Learn more about AppProject matching logic in the guides for [managed agents](managed-agent/appprojects-managed-mode.md) and [autonomous agents](autonomous-agent/appprojects-autonomous-mode.md).
 
 ### Example: Repository Distribution Setup
 
@@ -270,6 +270,5 @@ For more information about Argo CD Agent configuration and other features, see:
 - [Principal Configuration Reference](../configuration/reference/principal.md)
 - [Application synchronization (managed agents)](managed-agent/applications-managed-mode.md)
 - [Application synchronization (autonomous agents)](autonomous-agent/applications-autonomous-mode.md)
-- [AppProject synchronization overview](appprojects.md)
 - [AppProjects (managed agents)](managed-agent/appprojects-managed-mode.md)
 - [AppProjects (autonomous agents)](autonomous-agent/appprojects-autonomous-mode.md)

@@ -527,5 +527,6 @@ kubectl patch secret argocd-secret -n argocd \
 - [Adding More Agents](../../user-guide/adding-agents.md) - Scale your deployment
 - [Application Synchronization — managed agents](../../user-guide/managed-agent/applications-managed-mode.md) - How apps sync between clusters (managed mode)
 - [Application Synchronization — autonomous agents](../../user-guide/autonomous-agent/applications-autonomous-mode.md) - How apps sync between clusters (autonomous mode)
-- [AppProject Synchronization](../../user-guide/appprojects.md) - Managing project boundaries
+- [AppProject synchronization — managed agents](../../user-guide/managed-agent/appprojects-managed-mode.md) - Managing project boundaries (managed mode)
+- [AppProject synchronization — autonomous agents](../../user-guide/autonomous-agent/appprojects-autonomous-mode.md) - Managing project boundaries (autonomous mode)
 - [Live Resources](../../user-guide/live-resources.md) - Viewing resources across clusters

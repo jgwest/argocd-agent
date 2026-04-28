@@ -245,7 +245,7 @@ kubectl apply -f my-app.yaml --context <workload-cluster-context>
 AppProjects in argocd-agent work differently from traditional Argo CD due to the distributed nature of the architecture. The migration approach depends on your chosen agent mode.
 
 !!! info "AppProject Behavior Changes"
-    Unlike traditional Argo CD where AppProjects are shared across all clusters, argocd-agent uses different synchronization strategies based on agent mode. See [AppProject Synchronization](./appprojects.md) for detailed behavior.
+    Unlike traditional Argo CD where AppProjects are shared across all clusters, argocd-agent uses different synchronization strategies based on agent mode. See [AppProject synchronization (managed agents)](./managed-agent/appprojects-managed-mode.md) and [AppProject synchronization (autonomous agents)](./autonomous-agent/appprojects-autonomous-mode.md) for detailed behavior.
 
 #### Understanding AppProject Distribution
 
