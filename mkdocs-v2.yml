@@ -24,6 +24,7 @@ nav:
   - User guide:
       - Managed Agents:
         - Introduction: user-guide/managed-agent/index.md
+        - Applications (managed agents): user-guide/managed-agent/applications-managed-mode.md
         - Web-based terminal: user-guide/managed-agent/web-terminal.md
         - GPG Key Synchronization: user-guide/managed-agent/gpg-keys.md
       - Autonomous Agents:
@@ -31,7 +32,6 @@ nav:
         - Applications (autonomous agents): user-guide/autonomous-agent/applications-autonomous-mode.md
       - Features:
         - Managing Applications: user-guide/applications.md
-        - Applications (managed agents): user-guide/applications-managed-mode.md
         - Managing AppProjects: user-guide/appprojects.md
         - ApplicationSets: user-guide/applicationsets.md
         - Repository credentials: user-guide/repo-creds.md

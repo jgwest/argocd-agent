@@ -2,7 +2,7 @@
 
 This guide covers how Argo CD `Applications` are synchronized between **autonomous** agents and the principal.
 
-For **managed** agents, see [Application synchronization (managed agents)](../applications-managed-mode.md). For documentation covering both modes together, see [Application synchronization](../applications.md).
+For **managed** agents, see [Application synchronization (managed agents)](../managed-agent/applications-managed-mode.md). For documentation covering both modes together, see [Application synchronization](../applications.md).
 
 ## Overview
 
