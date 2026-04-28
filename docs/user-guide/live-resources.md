@@ -578,6 +578,7 @@ curl -k --cert client.crt --key client.key \
 
 - [Agent Configuration Reference](../configuration/reference/agent.md#resource-proxy-configuration) - Agent resource proxy configuration options
 - [Principal Configuration Reference](../configuration/reference/principal.md#resource-proxy-configuration) - Principal resource proxy configuration options
-- [Application Synchronization](./applications.md) - How Applications are managed
-- [Agent Modes](../concepts/agent-modes/index.md) - Understanding managed vs autonomous modes
+- [Application synchronization (managed agents)](./managed-agent/applications-managed-mode.md) - How Applications are managed with managed-mode agents
+- [Application synchronization (autonomous agents)](./autonomous-agent/applications-autonomous-mode.md) - How Applications are managed with autonomous agents
+- [Agent Modes](../concepts/agent-modes.md) - Understanding managed vs autonomous modes
 - [Architecture](../concepts/architecture.md) - Overall system architecture 

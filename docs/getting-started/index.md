@@ -29,11 +29,11 @@ When choosing a name, consider the following:
 
 ## Choosing the right operational mode for each agent
 
-As described in the chapter about [operational modes of agents](../concepts/agent-modes/index.md), each agent can operate in one of several modes. Each mode comes with its own pros and cons, and you want to consider the right mode for each agent.
+As described in the chapter about [operational modes of agents](../concepts/agent-modes.md), each agent can operate in one of several modes. Each mode comes with its own pros and cons, and you want to consider the right mode for each agent.
 
 It's perfectly fine to run a mixed-mode scenario, where some of the agents run in one mode while other agents run in different modes.
 
-If in doubt, it's recommended to start using the [managed mode](../concepts/agent-modes/managed.md) for your agents.
+If in doubt, it's recommended to start using the [managed mode](../user-guide/managed-agent/index.md) for your agents.
 
 ## Argo CD Component Placement
 

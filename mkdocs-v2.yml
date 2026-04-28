@@ -7,7 +7,6 @@ nav:
   - Features:
       - Overview: features/index.md
   - Concepts:
-      - Overview: concepts/index.md
       - Components & terminology: concepts/components-terminology.md
       - General architecture: concepts/architecture.md
       - Integration with Argo CD: concepts/argocd-integration.md
@@ -57,27 +56,21 @@ nav:
           - Agent: configuration/reference/agent.md
   - Operations:
       - Metrics: operations/metrics.md
-      - Tracing: operations/tracing.md
       - Profiling: operations/profiling.md
       - High availability: operations/ha-failover.md
       - Verifying artifacts: operations/provenance.md
   - Technical reference:
-      - Overview: technical/general.md
-      - Applications: technical/applications.md
-      - AppProjects: technical/appprojects.md
       - Web terminal workflow: technical/web-terminal-workflow.md
       - Sync protocol: concepts/sync-protocol.md
-      - Workflow: architecture/workflow.md
       - Proposals:
         - HA failover proposal: proposals/ha-failover.md
         - Sync protocol proposal: proposals/Argo-CD-Agent-Sync-Proposal.md
   - Contributing:
-      - Overview: contributing/index.md
-      - Contributing (upstream guide): CONTRIBUTING.md
-      - Local development: contributing/local.md
-      - Coding guidelines: contributing/code.md
-      - Documentation guidelines: contributing/docs.md
-      - Submitting PRs: contributing/prs.md
-      - Code reviewing guide: contributing/review.md
-      - Logging guidelines: contributing/logging.md
+    - Overview: contributing/index.md
+    - Local development: contributing/local.md
+    - Coding guidelines: contributing/code.md 
+    - Documentation guidelines: contributing/docs.md 
+    - Submitting PRs: contributing/prs.md
+    - Code reviewing guide: contributing/review.md
+    - Logging Guidelines for Contributors: contributing/logging.md
   - FAQ: faq/index.md

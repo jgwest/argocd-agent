@@ -1,94 +1,16 @@
-# Application Synchronization
+# Application Synchronization (autonomous agents)
 
-This document explains how Argo CD `Applications` are synchronized between the principal (control plane) and agents (workload clusters), covering both managed and autonomous agent modes.
+This guide covers how Argo CD `Applications` are synchronized between **autonomous** agents and the principal.
+
+For **managed** agents, see [Application synchronization (managed agents)](../managed-agent/applications-managed-mode.md). For how managed and autonomous modes differ at a conceptual level, see [Agent modes](../../concepts/agent-modes.md).
 
 ## Overview
 
-Application synchronization in argocd-agent follows a fundamentally different pattern than AppProjects. Applications are mapped to agents using **namespaces**, where each namespace on the principal corresponds to a specific agent. This provides a clear and scalable way to manage Applications across multiple clusters.
+Application synchronization in argocd-agent maps Applications to agents using **namespaces** on the principal that correspond to each agent.
 
-The synchronization mechanism varies depending on the agent mode:
+For autonomous agents, Applications are created on the agent and synchronized to the principal; the principal acts as a read-only mirror for specifications but can still perform sync, refresh, and resource actions.
 
-- **Managed agents**: Applications are created on the principal and distributed to agents; agents send status updates back
-- **Autonomous agents**: Applications are created on the agent and synchronized to the principal; principal acts as a read-only mirror for specifications but can still perform sync, refresh, and resource actions
-
-## Managed Agent Mode
-
-### Creating Applications
-
-In managed mode, Applications must be created in the **agent's corresponding namespace** on the **principal cluster** (control plane). The principal determines which agent should receive an Application based on the namespace where it's created.
-
-### Namespace to Agent Mapping
-
-Applications are mapped to agents through a simple naming convention:
-
-- **Namespace name on principal** = **Agent name**
-- Example: Applications in namespace `production-cluster` are sent to the agent named `production-cluster`
-
-### Example: Creating an Application for a Managed Agent
-
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: my-app
-  namespace: production-cluster  # This determines the target agent
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/argoproj/argocd-example-apps
-    targetRevision: HEAD
-    path: guestbook
-  destination:
-    server: https://kubernetes.default.svc  # Will be transformed
-    namespace: guestbook
-  syncPolicy:
-    syncOptions:
-    - CreateNamespace=true
-```
-
-When this Application is created in namespace `production-cluster` on the principal, it will be automatically sent to the managed agent named `production-cluster`.
-
-### Agent-Side Transformation
-
-When an Application is sent to a managed agent, it undergoes transformation to make it agent-specific:
-
-1. **Destination Server**: Transformed to point to the local cluster:
-```yaml
-   destination:
-     server: ""
-     name: "in-cluster"
-     namespace: "guestbook"
-```
-
-2. **Namespace**: Changed to the agent's local namespace:
-```yaml
-   metadata:
-     namespace: argocd  # Agent's local namespace
-```
-
-3. **Source UID Annotation**: Added to track the original source for synchronization purposes
-
-### Status Synchronization
-
-In managed mode, the agent continuously monitors Application status changes and sends updates back to the principal:
-
-- **Principal → Agent**: Spec changes (configuration, source repo, destination, etc.)
-- **Agent → Principal**: Status updates (sync status, health, operation results, etc.)
-
-The principal maintains the "source of truth" for the Application specification, while the agent reports back the actual state of the deployment.
-
-### Conflict Resolution
-
-If an Application is modified directly on the managed agent cluster (outside of the principal), these changes will be **automatically reverted** to maintain the principal as the single source of truth.
-
-### Lifecycle Management
-
-- **Creation**: Create Applications on the principal in the agent's namespace
-- **Updates**: Modify Applications on the principal; changes are automatically propagated
-- **Deletion**: Delete Applications on the principal; they're automatically removed from the agent
-- **Agent Connection**: When an agent connects, it receives all Applications in its namespace
-
-## Autonomous Agent Mode
+## Autonomous agent mode
 
 ### Creating Applications
 
@@ -131,7 +53,7 @@ Applications from autonomous agents may have their project references transforme
 - If the Application uses a non-default project, it may be prefixed with the agent name
 - Example: `my-project` becomes `production-agent-my-project` on the principal
 
-For more information, refer to [Managing AppProjects](./appprojects.md#autonomous-agent-mode)
+For more information, refer to [Managing AppProjects](appprojects-autonomous-mode.md).
 
 ### Status Synchronization
 
@@ -151,29 +73,6 @@ The principal serves as a centralized view of all Applications across autonomous
 
 ## Best Practices
 
-### For Managed Agents
-
-1. **Namespace Organization**: Use clear, descriptive namespace names that match your agent names:
-```
-   production-east
-   production-west
-   staging-cluster
-   development-cluster
-```
-
-2. **Application Naming**: Use consistent naming conventions within each namespace:
-```yaml
-   metadata:
-     name: frontend-prod
-     namespace: production-east
-```
-
-3. **Monitor Status**: Regularly check Application status on the principal to ensure successful deployments
-
-4. **Avoid Direct Changes**: Never modify Applications directly on agent clusters; always use the principal
-
-### For Autonomous Agents
-
 1. **Project Management**: Be mindful of project names as they may be prefixed on the principal:
 ```yaml
    spec:
@@ -186,14 +85,7 @@ The principal serves as a centralized view of all Applications across autonomous
 
 ## Troubleshooting
 
-### Application Not Appearing on Agent (Managed Mode)
-
-1. **Check Namespace**: Verify the Application is created in the correct namespace on the principal
-2. **Verify Agent Connection**: Ensure the agent is connected and the namespace name matches the agent name
-3. **Review Logs**: Check principal logs for distribution events and agent logs for reception
-4. **Check Source UID**: Look for source UID annotations to verify proper synchronization
-
-### Application Not Appearing on Principal (Autonomous Mode)
+### Application Not Appearing on Principal
 
 1. **Check Agent Mode**: Ensure the agent is running in autonomous mode
 2. **Verify Creation**: Confirm the Application was created on the agent cluster  
@@ -212,12 +104,9 @@ The principal serves as a centralized view of all Applications across autonomous
 - **Source UID Mismatch**: 
     - Usually resolved automatically by recreating the Application
     - Check logs for conflict resolution messages
-- **Cache Issues** (Managed Mode):
-    - Agent may revert unexpected changes
-    - Review Application cache logs on the agent
 - **Manual Intervention Required**:
     - Delete and recreate the Application if automatic resolution fails
-    - Ensure the principal has the desired specification
+    - Ensure the agent has the desired specification
 
 ## Monitoring and Observability
 
@@ -226,7 +115,6 @@ The principal serves as a centralized view of all Applications across autonomous
 - **Application Creation/Update/Delete Events**: Track synchronization activity
 - **Status Update Frequency**: Monitor how often agents report status changes
 - **Sync Errors**: Watch for failed synchronization attempts
-- **Cache Hit/Miss Rates**: For managed agents, monitor cache effectiveness
 
 ### Log Events to Watch
 
@@ -238,7 +126,6 @@ The principal serves as a centralized view of all Applications across autonomous
 - **Agent Logs**:
     - Application creation/update events
     - Status reporting activities
-    - Cache operations (managed mode)
     - Conflict resolution actions
 
 ### Health Checks
@@ -257,30 +144,7 @@ The skip sync label allows you to prevent specific Applications from being synch
 - **Label Value**: `"true"` (must be the exact string "true", case-sensitive)
 - **Scope**: Works for both managed and autonomous agent modes
 
-### Usage Examples
-
-#### Preventing Application Sync to Agent (Managed Mode)
-
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: principal-only-app
-  namespace: production-cluster
-  labels:
-    argocd-agent.argoproj-labs.io/ignore-sync: "true"  # Skip sync to agent
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/argoproj/argocd-example-apps
-    targetRevision: HEAD
-    path: guestbook
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: guestbook
-```
-
-This Application will remain only on the principal cluster and will not be sent to the `production-cluster` agent, even though it's created in that agent's namespace.
+### Usage Example
 
 #### Preventing Application Sync to Principal (Autonomous Mode)
 
@@ -324,9 +188,8 @@ This Application will remain only on the autonomous agent cluster and will not b
 
 ### Access Control
 
-- **Managed Mode**: Principal controls all Application specifications; implement RBAC on the principal
 - **Autonomous Mode**: Agents have full control; implement proper RBAC on each agent cluster
-- **Network Security**: Ensure encrypted communication channels between principal and agents
+- **Network Security**: Ensure encrypted communication channels between principal and agents.
 
 ### Isolation
 
@@ -338,4 +201,3 @@ This Application will remain only on the autonomous agent cluster and will not b
 
 - **Change Tracking**: All Application changes are logged and auditable
 - **Source Tracking**: Source UID annotations provide clear provenance
-- **Access Logs**: Monitor who creates/modifies Applications on the principal 

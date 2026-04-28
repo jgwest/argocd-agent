@@ -1,12 +1,12 @@
-# Repository Credential Templates
+# Repository Credential Templates (managed agents)
 
-This document explains how Argo CD `Repository Credential Templates` (repo-creds) are synchronized between the principal and agents.
+This document explains how Argo CD `Repository Credential Templates` (repo-creds) are synchronized between the principal and managed agents.
 
 ## Overview
 
 Repository credential templates allow you to define credentials once and have them automatically applied to any repository matching a URL pattern. In Argo CD Agent, repo-creds are stored as Kubernetes Secrets with the label `argocd.argoproj.io/secret-type: repo-creds`.
 
-Repo-creds follow the same synchronization model as [repository secrets](repository.md):
+Repo-creds follow the same synchronization model as repository secrets ([managed agents](./repository-managed-mode.md), [autonomous agents](../autonomous-agent/repository-autonomous-mode.md)):
 
 - **Managed agents**: Repo-creds are created on the control plane and distributed to agents based on AppProject matching.
 - **Autonomous agents**: Repo-creds are created and managed locally on the workload cluster.
@@ -40,7 +40,7 @@ stringData:
 
 Any repository URL starting with `https://github.com/myorg` will automatically use these credentials on agents matching the AppProject's patterns.
 
-The distribution logic (AppProject matching, agent pattern matching) is identical to repository secrets. See the [Repository Management](repository.md) and [AppProjects](appprojects.md) guides for details.
+The distribution logic (AppProject matching, agent pattern matching) is identical to repository secrets. See the [Repository Management](repository-managed-mode.md) guide for managed agents or [Repository Management](../autonomous-agent/repository-autonomous-mode.md) for autonomous agents, and the AppProject docs for [managed agents](./appprojects-managed-mode.md) and [autonomous agents](../autonomous-agent/appprojects-autonomous-mode.md).
 
 ## Lifecycle
 
@@ -69,4 +69,4 @@ If repo-creds are not appearing on managed agents, verify:
 3. The AppProject patterns match the agent name (check both `.spec.destinations` and `.spec.sourceNamespaces`)
 4. The agent is connected (check principal and agent logs)
 
-See the [Repository Management troubleshooting](repository.md#troubleshooting) section for detailed steps.
+See the [Repository Management troubleshooting — managed agents](repository-managed-mode.md#troubleshooting) section for detailed steps.

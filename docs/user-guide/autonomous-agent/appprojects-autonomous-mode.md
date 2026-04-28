@@ -1,79 +1,14 @@
-# AppProject Synchronization
+# AppProject Synchronization (autonomous agents)
 
-This document explains how Argo CD `AppProjects` are synchronized between the principal (control plane) and agents (workload clusters), covering both managed and autonomous agent modes.
+This guide explains how Argo CD `AppProjects` are synchronized between **autonomous** agents and the principal.
+
+For **managed** agents, see [AppProject synchronization (managed agents)](../managed-agent/appprojects-managed-mode.md). For how modes differ conceptually, see [Agent modes](../../concepts/agent-modes.md).
 
 ## Overview
 
 AppProjects in argocd-agent work differently from standard Argo CD deployments. While Applications can be mapped to agents using namespaces, AppProjects require a different synchronization strategy due to their traditional placement in the Argo CD installation namespace.
 
-The synchronization mechanism varies depending on the agent mode:
-
-- **Managed agents**: AppProjects are created on the principal and distributed to agents
-- **Autonomous agents**: AppProjects are created on the agent and synchronized back to the principal
-
-## Managed Agent Mode
-
-### Creating AppProjects
-
-In managed mode, AppProjects must be created on the **principal cluster** (control plane). The principal determines which agents should receive an AppProject by examining two key fields:
-
-1. **`.spec.sourceNamespaces`**: Defines which namespaces can contain Applications using this project
-2. **`.spec.destinations`**: Defines which clusters/namespaces Applications can deploy to
-
-### Distribution Logic
-
-The principal distributes an AppProject to a managed agent when **both** conditions are met:
-
-1. The agent name matches one of the patterns in `.spec.destinations[].name`
-2. The agent name matches one of the patterns in `.spec.sourceNamespaces`
-
-This uses glob pattern matching, so wildcards like `agent-*` are supported.
-
-### Example: Creating an AppProject for Managed Agents
-
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: my-project
-  namespace: argocd
-spec:
-  # This project will be distributed to agents matching "agent-*" pattern
-  sourceNamespaces:
-  - agent-*
-  destinations:
-  - name: agent-*
-    namespace: "guestbook"
-    server: "*"
-  sourceRepos:
-  - "*"
-```
-
-When this AppProject is created on the principal, it will be automatically distributed to all connected managed agents whose names match the `agent-*` pattern.
-
-### Agent-Specific Transformation
-
-When an AppProject is sent to an agent, it undergoes transformation to make it agent-specific:
-
-1. **Destinations**: Only destinations matching the agent are kept (using glob pattern matching), and they're transformed to point to the local cluster:
-```yaml
-   destinations:
-   - name: "in-cluster"
-     server: "https://kubernetes.default.svc"
-     namespace: "guestbook"  # Preserves original namespace restrictions
-```
-
-2. **Source Namespaces**: Removed completely since they're only used on the control plane for routing
-    - The `sourceNamespaces` field is used on the control plane to determine which agents should receive the AppProject. Once the AppProject arrives at the agent cluster, this field is removed as it's no longer needed.
-
-3. **Roles**: Removed since they're not relevant on the workload cluster
-
-### Lifecycle Management
-
-- **Creation**: When you create an AppProject on the principal, it's automatically distributed to matching agents
-- **Updates**: Changes to AppProjects on the principal are propagated to affected agents
-- **Deletion**: Deleting an AppProject on the principal removes it from all agents
-- **Agent Connection**: When an agent connects, it receives all AppProjects that should be synchronized to it
+On autonomous agents, AppProjects are **created on the agent cluster** and **synchronized to the principal**, where they are transformed (including name prefixing) for UI/API visibility and validation.
 
 ## Autonomous Agent Mode
 
@@ -148,7 +83,7 @@ When an AppProject is received from an autonomous agent, the principal applies t
    - agent-production  # The agent's namespace on the principal
 ```
 
-3. **Destinations**: All destinations are transformed to point to the agent cluster:
+3. **Destinations**: All destinations are transformed to point at the agent cluster:
 ```yaml
    destinations:
    - name: agent-production  # The agent name
@@ -158,18 +93,8 @@ When an AppProject is received from an autonomous agent, the principal applies t
 
 4. **Namespace Mapping**: The project is placed in the Argo CD namespace on the principal (same as where other AppProjects reside)
 
-## Key Transformation Differences
+### Transformation summary (autonomous)
 
-The transformation logic differs significantly between managed and autonomous agents:
-
-### Managed Agents (Principal → Agent)
-- **Direction**: AppProject flows from principal to agent
-- **Selection**: Uses glob pattern matching on `sourceNamespaces` and `destinations` to determine which agents receive the project
-- **Destinations**: Filtered to only include destinations matching the agent, then transformed to `in-cluster`
-- **Source Namespaces**: Removed completely since they're only used on the control plane for routing
-- **Name**: Remains unchanged
-
-### Autonomous Agents (Agent → Principal)
 - **Direction**: AppProject flows from agent to principal  
 - **Selection**: All AppProjects created on autonomous agents are synchronized
 - **Destinations**: All destinations are transformed to point to the agent cluster (name = agent name, server = "*")
@@ -185,24 +110,6 @@ The transformation logic differs significantly between managed and autonomous ag
 
 ## Best Practices
 
-### For Managed Agents
-
-1. **Use Descriptive Patterns**: Use clear glob patterns in `sourceNamespaces` and `destinations` to target the right agents:
-```yaml
-   sourceNamespaces:
-   - "production-*"
-   - "staging-*"
-   destinations:
-   - name: "production-*"
-   - name: "staging-*"
-```
-
-2. **Test Connectivity**: Ensure agents are connected before creating AppProjects, or they'll receive them upon next connection
-
-3. **Monitor Distribution**: Check agent logs to verify AppProject distribution is working correctly
-
-### For Autonomous Agents
-
 1. **Use Meaningful Names**: Choose AppProject names that make sense when prefixed with the agent name
 
 2. **Plan for Conflicts**: Remember that the principal will see `{agent-name}-{project-name}`, so plan accordingly
@@ -210,13 +117,6 @@ The transformation logic differs significantly between managed and autonomous ag
 3. **Local Management**: Only create AppProjects that are specific to the autonomous agent's workload
 
 ## Troubleshooting
-
-### AppProject Not Appearing on Agent
-
-1. **Check Agent Mode**: Ensure the agent is in managed mode
-2. **Verify Patterns**: Confirm the agent name matches patterns in `sourceNamespaces` and `destinations`
-3. **Check Connectivity**: Verify the agent is connected to the principal
-4. **Review Logs**: Check principal and agent logs for synchronization errors
 
 ### AppProject Not Appearing on Principal
 
@@ -231,7 +131,7 @@ The transformation logic differs significantly between managed and autonomous ag
 2. **Check Case Sensitivity**: Ensure agent names match the expected case
 3. **Verify Wildcards**: Confirm wildcard patterns are correctly specified
 
-## Skip Sync Label
+## Skip sync label
 
 The skip sync label allows you to prevent specific AppProjects from being synchronized between the principal and agents. This is useful when you want to create AppProjects that should only exist on one side of the synchronization.
 
@@ -241,32 +141,7 @@ The skip sync label allows you to prevent specific AppProjects from being synchr
 - **Label Value**: `"true"` (must be the exact string "true", case-sensitive)
 - **Scope**: Works for both managed and autonomous agent modes
 
-### Usage Examples
-
-#### Preventing AppProject Sync to Agent (Managed Mode)
-
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: AppProject
-metadata:
-  name: principal-only-project
-  namespace: argocd
-  labels:
-    argocd-agent.argoproj-labs.io/ignore-sync: "true"  # Skip sync to agents
-spec:
-  destinations:
-  - name: "in-cluster"
-    namespace: "*"
-    server: "https://kubernetes.default.svc"
-  sourceNamespaces:
-  - argocd
-  sourceRepos:
-  - "*"
-```
-
-This AppProject will remain only on the principal cluster and will not be distributed to any agents, regardless of matching patterns in `sourceNamespaces` and `destinations`.
-
-#### Preventing AppProject Sync to Principal (Autonomous Mode)
+### Preventing Sync to Principal (autonomous mode)
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -299,7 +174,6 @@ This AppProject will remain only on the autonomous agent cluster and will not be
 
 ### Use Cases
 
-- **Principal-Only Projects**: Projects that define permissions for control plane operations
 - **Agent-Only Projects**: Projects specific to local workload cluster requirements
 - **Administrative Projects**: Projects used for cluster management that shouldn't be distributed
 - **Temporary Isolation**: Preventing sync during maintenance, testing, or gradual rollouts
@@ -333,12 +207,10 @@ This is useful for repositories that should only be available on specific cluste
 
 ## Security Considerations
 
-- **Managed Mode**: Only the principal can create AppProjects, maintaining central control
-- **Autonomous Mode**: Agents can create AppProjects, so ensure proper RBAC on agent clusters
+- **Autonomous mode**: Agents can create AppProjects locally—enforce RBAC on each workload cluster.
 
-## Monitoring and Observability
+## Monitoring and observability
 
-- **Principal Logs**: Monitor AppProject distribution events
-- **Agent Logs**: Watch for AppProject creation/update/deletion events
-- **Metrics**: Use available metrics to track AppProject synchronization success/failure rates
-- **Health Checks**: Implement monitoring to detect synchronization issues
+- **Principal logs**: Observe AppProject events arriving from agents
+- **Agent logs**: Local AppProject lifecycle and sync errors
+- **Metrics / health checks**: Track upstream sync success
