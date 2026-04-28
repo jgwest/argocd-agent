@@ -1,4 +1,4 @@
-# ApplicationSets
+# ApplicationSets (autonomous agents)
 
 ## Overview
 

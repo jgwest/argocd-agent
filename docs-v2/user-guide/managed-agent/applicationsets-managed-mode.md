@@ -1,4 +1,4 @@
-# ApplicationSets
+# ApplicationSets (managed agents)
 
 ## Overview
 

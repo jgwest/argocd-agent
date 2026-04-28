@@ -24,19 +24,20 @@ nav:
   - User guide:
       - Managed Agents:
         - Introduction: user-guide/managed-agent/index.md
-        - Applications (managed agents): user-guide/managed-agent/applications-managed-mode.md
-        - AppProjects (managed agents): user-guide/managed-agent/appprojects-managed-mode.md
-        - ApplicationSets (managed agents): user-guide/managed-agent/applicationsets-managed-mode.md
+        - Applications: user-guide/managed-agent/applications-managed-mode.md
+        - AppProjects: user-guide/managed-agent/appprojects-managed-mode.md
+        - ApplicationSets: user-guide/managed-agent/applicationsets-managed-mode.md
+        - Repository URLs: user-guide/managed-agent/repository-managed-mode.md
         - Web-based terminal: user-guide/managed-agent/web-terminal.md
         - GPG Key Synchronization: user-guide/managed-agent/gpg-keys.md
       - Autonomous Agents:
         - Introduction: user-guide/autonomous-agent/index.md
-        - Applications (autonomous agents): user-guide/autonomous-agent/applications-autonomous-mode.md
-        - AppProjects (autonomous agents): user-guide/autonomous-agent/appprojects-autonomous-mode.md
-        - ApplicationSets (autonomous agents): user-guide/autonomous-agent/applicationsets-autonomous-mode.md
+        - Applications: user-guide/autonomous-agent/applications-autonomous-mode.md
+        - AppProjects: user-guide/autonomous-agent/appprojects-autonomous-mode.md
+        - ApplicationSets: user-guide/autonomous-agent/applicationsets-autonomous-mode.md
+        - Repository URLs: user-guide/autonomous-agent/repository-autonomous-mode.md
       - Features:
         - Repository credentials: user-guide/repo-creds.md
-        - Repository URLs: user-guide/repository.md
         - Adding an agent: user-guide/adding-agents.md
         - Accessing live resources on workload clusters: user-guide/live-resources.md
         - Migration from classical multi-cluster Argo CD: user-guide/migration.md
