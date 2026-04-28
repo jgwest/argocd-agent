@@ -4,7 +4,7 @@ The main purpose of the [agent](../components-terminology.md#agent) and the [pri
 
 Each agent can operate in one of two distinct configuration modes: *managed* or *autonomous*. These modes define the general sync direction: From the workload cluster to the control plane cluster (*autonomous*), or from the control plane cluster to the workload cluster (*managed*).
 
-Please refer to the sub-chapters [Managed mode](./managed.md) and [Autonomous mode](./autonomous.md) for detailed information, architectural considerations and constraints to chose the mode most appropriate for your agents.
+Please refer to [Managed agents](../../user-guide/managed-agent/index.md) and [Autonomous agents](../../user-guide/autonomous-agent/index.md) for detailed information, architectural considerations and constraints to chose the mode most appropriate for your agents.
 
 !!!note
      It is perfectly fine to run a *mixed modes* scenario, where some of your agents are using the *managed* configuration mode while others will run in the *autonomous* configuration mode.

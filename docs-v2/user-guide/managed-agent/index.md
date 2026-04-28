@@ -2,7 +2,7 @@
 
 ## Overview
 
-In *managed mode*, the control plane cluster is responsible for maintaining the configuration of an agent. The agent receives all of its configuration (e.g. `Applications` and `AppProjects`) from the [principal](../components-terminology.md#principal). 
+In *managed mode*, the control plane cluster is responsible for maintaining the configuration of an agent. The agent receives all of its configuration (e.g. `Applications` and `AppProjects`) from the [principal](../../concepts/components-terminology.md#principal). 
 
 For example, to create a new Argo CD `Application` on the workload cluster, it must be created on the control plane cluster. The principal will observe the creation of a new `Application` and emit a creation event that the agent on the workload cluster will pick up. The agent then will create the `Application` in its local cluster. From there, it will be picked up by the Argo CD *application controller* for reconciliation. The agent will observe any changes to the `Application`'s status field and transmits them to the principal, which merges them into the leading copy of the `Application`.
 

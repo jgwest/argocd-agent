@@ -14,9 +14,9 @@ argocd-agent transforms traditional multi-cluster Argo CD deployments by inverti
 
 ### Operational Modes
 
-**[Managed Mode](../concepts/agent-modes/managed.md)**: Applications are defined on the control plane and distributed to agents. Ideal for centralized governance and policy enforcement across multiple clusters.
+**[Managed Mode](../user-guide/managed-agent/index.md)**: Applications are defined on the control plane and distributed to agents. Ideal for centralized governance and policy enforcement across multiple clusters.
 
-**[Autonomous Mode](../concepts/agent-modes/autonomous.md)**: Applications are defined locally on workload clusters and synchronized back for observability. Perfect for edge deployments, air-gapped environments, or scenarios requiring local autonomy.
+**[Autonomous Mode](../user-guide/autonomous-agent/index.md)**: Applications are defined locally on workload clusters and synchronized back for observability. Perfect for edge deployments, air-gapped environments, or scenarios requiring local autonomy.
 
 ### Communication Protocol
 

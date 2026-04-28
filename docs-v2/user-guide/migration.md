@@ -67,14 +67,14 @@ kubectl get applicationsets -A
 
 For each workload cluster, decide on the operational mode:
 
-**[Managed Mode](../concepts/agent-modes/managed.md)** - Choose when:
+**[Managed Mode](./managed-agent/index.md)** - Choose when:
 
 - You want centralized application management
 - Applications are deployed from the control plane
 - You need consistent policy enforcement across clusters
 - Network connectivity is generally reliable
 
-**[Autonomous Mode](../concepts/agent-modes/autonomous.md)** - Choose when:
+**[Autonomous Mode](./autonomous-agent/index.md)** - Choose when:
 
 - Clusters need to operate independently
 - Applications are managed via GitOps (app-of-apps pattern) directly on the workload clusters

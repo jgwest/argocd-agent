@@ -33,7 +33,7 @@ As described in the chapter about [operational modes of agents](../concepts/agen
 
 It's perfectly fine to run a mixed-mode scenario, where some of the agents run in one mode while other agents run in different modes.
 
-If in doubt, it's recommended to start using the [managed mode](../concepts/agent-modes/managed.md) for your agents.
+If in doubt, it's recommended to start using the [managed mode](../user-guide/managed-agent/index.md) for your agents.
 
 ## Argo CD Component Placement
 
