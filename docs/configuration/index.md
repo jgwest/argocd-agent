@@ -115,7 +115,7 @@ agent.creds: "mtls:"
 ## Security Best Practices
 
 1. **Use mTLS authentication** for production deployments
-2. **Never use `--insecure-*` flags** in production, with one exception: `--insecure-plaintext` is required when running behind a service mesh (Istio, Linkerd) that handles TLS at the sidecar level. See [Networking](networking.md#service-mesh-integration) for details.
+2. **Never use `--insecure-*` flags** in production, with one exception: `--insecure-plaintext` is required when running behind a service mesh (Istio, Linkerd) that handles TLS at the sidecar level. See [Service mesh integration](service-mesh.md) for details.
 3. **Store secrets properly** - TLS certificates and JWT keys should be in Kubernetes Secrets, not ConfigMaps
 4. **Rotate certificates regularly** - Implement automated certificate rotation
 5. **Restrict network access** - Use network policies to limit access to metrics and health endpoints

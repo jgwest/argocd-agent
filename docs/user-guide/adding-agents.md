@@ -364,6 +364,9 @@ After successfully adding agents:
 4. **Implement GitOps**: Configure your deployment pipelines
 
 For more information, refer to:
-- [Application Synchronization](./applications.md)
-- [AppProject Synchronization](./appprojects.md)
+
+- [Application synchronization (managed agents)](./managed-agent/applications-managed-mode.md)
+- [Application synchronization (autonomous agents)](./autonomous-agent/applications-autonomous-mode.md)
+- [AppProject synchronization (managed agents)](./managed-agent/appprojects-managed-mode.md)
+- [AppProject synchronization (autonomous agents)](./autonomous-agent/appprojects-autonomous-mode.md)
 - [Live Resources](./live-resources.md) 

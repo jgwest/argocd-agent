@@ -70,14 +70,14 @@ kubectl get applicationsets -A
 
 For each workload cluster, decide on the operational mode:
 
-**[Managed Mode](../concepts/agent-modes/managed.md)** - Choose when:
+**[Managed Mode](./managed-agent/index.md)** - Choose when:
 
 - You want centralized application management
 - Applications are deployed from the control plane
 - You need consistent policy enforcement across clusters
 - Network connectivity is generally reliable
 
-**[Autonomous Mode](../concepts/agent-modes/autonomous.md)** - Choose when:
+**[Autonomous Mode](./autonomous-agent/index.md)** - Choose when:
 
 - Clusters need to operate independently
 - Applications are managed via GitOps (app-of-apps pattern) directly on the workload clusters
@@ -248,7 +248,7 @@ kubectl apply -f my-app.yaml --context <workload-cluster-context>
 AppProjects in argocd-agent work differently from traditional Argo CD due to the distributed nature of the architecture. The migration approach depends on your chosen agent mode.
 
 !!! info "AppProject Behavior Changes"
-    Unlike traditional Argo CD where AppProjects are shared across all clusters, argocd-agent uses different synchronization strategies based on agent mode. See [AppProject Synchronization](./appprojects.md) for detailed behavior.
+    Unlike traditional Argo CD where AppProjects are shared across all clusters, argocd-agent uses different synchronization strategies based on agent mode. See [AppProject synchronization (managed agents)](./managed-agent/appprojects-managed-mode.md) and [AppProject synchronization (autonomous agents)](./autonomous-agent/appprojects-autonomous-mode.md) for detailed behavior.
 
 #### Understanding AppProject Distribution
 
@@ -563,5 +563,5 @@ For migration support:
 ## Additional Resources
 
 - [Architecture Overview](../concepts/architecture.md) - Understanding the technical foundations
-- [Agent Modes](../concepts/agent-modes/index.md) - Detailed mode comparisons  
+- [Agent Modes](../concepts/agent-modes.md) - Detailed mode comparisons  
 - [Configuration Guide](../configuration/index.md) - Advanced configuration options

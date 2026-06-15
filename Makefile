@@ -215,11 +215,11 @@ push-image:
 
 .PHONY: serve-docs
 serve-docs:
-	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -it -p 8000:8000 -v ${current_dir}:/docs ${MKDOCS_DOCKER_IMAGE} serve -a 0.0.0.0:8000
+	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -it -p 8000:8000 -v ${current_dir}:/docs:Z ${MKDOCS_DOCKER_IMAGE} serve -a 0.0.0.0:8000
 
 .PHONY: build-docs
 build-docs:
-	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -v ${current_dir}:/docs ${MKDOCS_DOCKER_IMAGE} build
+	${DOCKER_BIN} run ${MKDOCS_RUN_ARGS} --rm -v ${current_dir}:/docs:Z ${MKDOCS_DOCKER_IMAGE} build
 
 .PHONY: validate-values-schema
 validate-values-schema:
